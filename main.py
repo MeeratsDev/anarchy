@@ -1,30 +1,29 @@
-import math
+from pybricks import runloop, motor, force_sensor, motor_pair, port, light_matrix, button
+import time, math, movement
 
-squareSize = 25
+def moveForward(distance, mode, speed):
+    if mode == 'forward':
+        motor.run_for_degrees(port.C, distance * -1, speed) ## Right wheel
+        motor.run_for_degrees(port.D, distance, speed) ## Left wheel
 
-class Point:
-    def __init__(self, x, y):
-        self.x = x
-        self.y = y
+def stopMove():
+    motor.stop(port.C) ## stop right wheel
+    motor.stop(port.D) ## stop left wheel
 
-class Vector2:
-    def __init__(self, point):
-        self.direction = directionFromPoint(point)
-        self.magnitude = pythag(point)
-
-def directionFromPoint(point):
-    angle_radiants = math.atan2(point.x, point.y)
-    return math.degrees(angle_radiants)
-
-def pythag(point):
-    return math.sqrt(point.x*point.x + point.y*point.y)
+def square(): ## Doesn't work
+    times = 4
+    while times != 0:
+        motor.run_for_degrees(port.C, 360, 1000)
+        motor.run_for_degrees(port.D, 240, 750)
+        times -= 1
 
 
-inputX = int(input("Enter an X value: ")) * squareSize
-inputY = int(input("Enter an Y value: ")) * squareSize
+async def main():
+    while True:
+        if force_sensor.force(port.B) >= 50: ## Manual hard press function on green button
+            moveForward(1000, 'forward', 1000) ## runs the move function for 1000 degrees forward @ 1000 speed
+        if force_sensor.force(port.A) >= 5: ## detects red button press
+            stopMove() ## stops moving
 
-point = Point(inputX, inputY)
-
-vector = Vector2(point)
-
-print("Direction: " + str(vector.direction) + " Magnitude: " + str(vector.magnitude))
+    
+runloop.run(main())
