@@ -47,7 +47,7 @@ modeDict = {
 
 this change will then be adopted by the rest of the program and the mode can be used, to implement the functionality of the mode we recommend you create a new function with the mode's logic then simply call the function from the point in the Screen class where inputs for the green button are handeled (line 135).
 
-To add more inputs to handle you can simply add them to the elif chain in the getInput() function as a part of the inputManager class (line 80) these can then be called by inputManager.getInput("keyname"), the input manager can be defined in a seperate class as follows
+To add more inputs to handle you can simply add them to the elif chain in the ```getInput()``` function as a part of the inputManager class (line 80) these can then be called by ```inputManager.getInput("keyname")```, the input manager can be defined in a seperate class as follows
 
 ```self.input = inputManager()``` (can be seen in line 121)
 
