@@ -1,5 +1,7 @@
 # M.E.D.S - Modular Electronic Delivery System
 
+### **_This project has been discontinued and will nolonger be updated, feel free to fork the project for your own purposes._**
+
 ## Our team: 
 
 |NAME   |ROLE   |
